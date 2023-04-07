@@ -2,13 +2,49 @@
 
 
 {% block content %}
-<div class="col-md-6 offset-md-3">
-	{% if user.is_authenticated %}
 
-	<h1>Hello World!</h1>
+	{% if user.is_authenticated %}
+	<div class="container-fluid px-5">
+		<table class="table">
+  <thead>
+    <tr>
+    	<th scope="col">Created At</th>
+      <th scope="col">Name</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Sex</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">Zipcode</th>
+      <th scope="col">ID</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% if records %}
+		{% for record in records %}
+    <tr>
+      <td>{{ record.created_at }}</td>
+      <td>{{ record.first_name }}
+			{{ record.last_name }}</td>
+      <td>{{ record.birttday }}</td>
+      <td>{{ record.sex }}</td>
+      <td>{{ record.phone }}</td>
+      <td>{{ record.email }}</td>
+      <td>{{ record.address }}</td>
+      <td>{{ record.city }}</td>
+      <td>{{ record.state }}</td>
+      <td>{{ record.zipcode }}</td>
+      <td><a href="{% url 'customer' record.id %}">{{ record.id }}</a></td>
+    </tr>
+    {% endfor %}
+	{% endif %}
+  </tbody>
+</table>
 <br/>
   {% else %}
-
+<div class="col-md-6 offset-md-3">
  
 	<h1 class="my-3">Login</h1>
 	<form action="{% url 'home' %}" method="POST">
@@ -24,15 +60,18 @@
       <input type="password" class="form-control" name="password" placeholder="Password" required>
     </div>
 </div>
+		<div class="col-sm-10">
+   			 <button type="submit" class="btn btn-secondary btn-lg">Log In</button>
+  		</div>
 
-		 <div class="col-sm-10">
-    <button type="button" class="btn btn-secondary btn-lg">Log In</button>
-  </div>
+
 
 	</form>
+	</div>
 
 {% endif %}
 	
 </div>
+
 {% endblock %}
 

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	
+	<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ customer_details.first_name }}
+	  {{ customer_details.last_name }}</h5>
+        <p class="card-text">{{ customer_details.birttday }}</p>
+         <p class="card-text">{{ customer_details.sex }}</p>
+          <p class="card-text">{{ customer_details.birttday }}</p>
+           <p class="card-text">{{ customer_details.phone }}</p>
+            <p class="card-text">{{ customer_details.email }}</p>            
+            <p class="card-text">{{ customer_details.city }}</p>
+            <p class="card-text">{{ customer_details.state }}</p>
+            <p class="card-text">{{ customer_details.zipcode }}</p>
+
+        <p class="card-text"><small class="text-muted">{{ customer_details.created_at }}<span>*** Customer Id: {{ customer_details.id }}</span>
+      </small></p>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<a href="{% url 'home' %}" type="submit" class="btn btn-secondary btn-lg">Back</a>
+
+<a href="{% url 'delete_record' customer_details.id %}" type="submit" class="btn btn-danger btn-lg">Delete</a>
+
+<a href="{% url 'update_record' customer_details.id %}" type="submit" class="btn btn-danger btn-lg">Update Record</a>
+{%  endblock %}
